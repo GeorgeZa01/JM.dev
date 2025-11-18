@@ -85,20 +85,7 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Mobile container optimization */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 0.75rem;
-            }
+            padding: 0 1rem;
         }
 
         /* --- GLASSMORHISM & OPACITY CONTROLS --- */
@@ -132,13 +119,6 @@
             border-color: var(--color-accent);
         }
 
-        /* Disable hover transform on touch devices to prevent jank */
-        @media (hover: none) and (pointer: coarse) {
-            .card-interaction:active {
-                transform: translateY(-4px);
-            }
-        }
-
         .btn-primary {
             background-color: var(--color-accent);
             transition: all 0.3s ease-in-out;
@@ -150,14 +130,6 @@
             /* Blue 600 */
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
             transform: translateY(-2px);
-        }
-
-        /* Mobile button touch feedback */
-        @media (hover: none) and (pointer: coarse) {
-            .btn-primary:active {
-                transform: translateY(0);
-                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-            }
         }
 
         /* Utility mappings for custom/tailwind-like classes used in markup */
@@ -245,7 +217,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 2rem;
             align-items: start;
         }
@@ -290,14 +262,13 @@
             font-weight: 600;
         }
 
-        @media (max-width: 900px) {
+        @media (min-width: 768px) {
             .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: left;
+                grid-template-columns: 1fr 1fr 1fr;
             }
-
-            .social-list {
-                justify-content: flex-start;
+            
+            .container {
+                padding: 0 1.5rem;
             }
         }
 
@@ -305,7 +276,7 @@
         .expertise-grid {
             display: grid;
             gap: 1.25rem;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr;
         }
 
         .skill-card {
@@ -331,15 +302,15 @@
             border-radius: 8px;
         }
 
-        @media (max-width: 1024px) {
+        @media (min-width: 640px) {
             .expertise-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 640px) {
+        @media (min-width: 1024px) {
             .expertise-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -390,10 +361,11 @@
         .mobile-toggle {
             background: transparent;
             border: none;
-            padding: 0.25rem;
+            padding: 0.5rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            border-radius: 8px;
         }
 
         .mobile-nav {
@@ -403,7 +375,7 @@
             right: 0;
             top: 100%;
             background: linear-gradient(180deg, rgba(2, 6, 23, 0.98), rgba(15, 23, 42, 0.98));
-            padding: 1rem 1.5rem;
+            padding: 1rem;
             z-index: 60;
             box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
             transform-origin: top;
@@ -420,10 +392,11 @@
 
         .mobile-nav a {
             display: block;
-            padding: 0.75rem 0.5rem;
+            padding: 1rem 0.75rem;
             color: var(--color-text);
             text-decoration: none;
             border-radius: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .mobile-nav a:hover,
@@ -536,7 +509,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr auto;
+            grid-template-columns: 1fr;
             gap: 1.5rem;
             align-items: center;
         }
@@ -579,6 +552,10 @@
             font-size: 0.875rem;
             transition: all 0.3s ease;
             white-space: nowrap;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cookie-btn-accept {
@@ -604,22 +581,14 @@
             color: #2563eb;
         }
 
-        @media (max-width: 768px) {
-            .cookie-banner {
-                padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
-            }
-
+        @media (min-width: 768px) {
             .cookie-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                grid-template-columns: 1fr auto;
+                gap: 1.5rem;
             }
-
+            
             .cookie-actions {
-                width: 100%;
-            }
-
-            .cookie-btn {
-                flex: 1;
+                width: auto;
             }
         }
 
@@ -632,9 +601,7 @@
             align-items: center;
             justify-content: center;
             z-index: 1200;
-            padding: 1.5rem;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            padding: 1rem;
         }
 
         .modal-overlay.hidden { display: none; }
@@ -645,90 +612,16 @@
             max-width: 920px;
             width: 100%;
             max-height: 90vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            overflow: auto;
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(2,6,23,0.6);
             border: 1px solid rgba(255,255,255,0.03);
             padding: 1.25rem;
         }
 
-        /* Mobile modal optimization */
-        @media (max-width: 768px) {
-            .modal-overlay {
-                padding: 1rem;
-            }
-
-            .modal {
-                max-height: calc(100vh - 2rem);
-                border-radius: 8px;
-                padding: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .modal-overlay {
-                padding: 0.75rem;
-            }
-
-            .modal {
-                max-height: calc(100vh - 1.5rem);
-                padding: 0.75rem;
-            }
-        }
-
-        .modal-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap: wrap; }
-        .modal-close { background:transparent; border:none; color:var(--color-text); font-weight:700; padding:0.5rem; border-radius:8px; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+        .modal-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+        .modal-close { background:transparent; border:none; color:var(--color-text); font-weight:700; padding:0.5rem; border-radius:8px; }
         .modal-close:focus { outline:3px solid rgba(59,130,246,0.18); }
-
-        .modal-title { margin: 0; }
-        .modal-content-area { margin-top: 1rem; }
-
-        /* Learn more link button (accessible alternative to onclick) */
-        .learn-more-link {
-            background: transparent;
-            border: none;
-            color: var(--color-accent);
-            text-decoration: underline;
-            cursor: pointer;
-            font-weight: 500;
-            padding: 0;
-        }
-
-        /* Mobile section padding & spacing */
-        section {
-            overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding-top: 3rem !important;
-                padding-bottom: 3rem !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            section {
-                padding-top: 2rem !important;
-                padding-bottom: 2rem !important;
-            }
-        }
-
-        /* Utility: safe responsive text sizes */
-        h1, h2, h3 {
-            word-break: break-word;
-            overflow-wrap: break-word;
-        }
-
-        /* Grid/Flex mobile utilities */
-        .grid, [class*="grid-"] {
-            overflow: hidden;
-        }
-
-        /* Ensure flex items don't overflow on mobile */
-        [class*="flex"] {
-            min-width: 0;
-        }
 
         /* Mobile / touch target improvements */
         header {
@@ -737,8 +630,6 @@
         }
 
         .btn-primary,
-        .cookie-btn,
-        .mobile-toggle,
         .package-select,
         .contact-cta {
             min-height: 44px;
@@ -750,9 +641,69 @@
             touch-action: manipulation;
         }
 
-        .mobile-toggle {
-            padding: 0.5rem;
-            border-radius: 8px;
+        /* Responsive typography */
+        .hero-heading {
+            font-size: 2.5rem;
+            line-height: 1.1;
+        }
+        
+        .section-heading {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-heading {
+                font-size: 3.5rem;
+            }
+            
+            .section-heading {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero-heading {
+                font-size: 4.5rem;
+            }
+            
+            .section-heading {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-heading {
+                font-size: 5rem;
+            }
+            
+            .section-heading {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Pricing grid improvements */
+        .pricing-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Service grid improvements */
+        .services-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
     <script type="application/ld+json">
@@ -795,21 +746,21 @@
     <!-- Header & Navigation (Fixed & Subtle Glass) -->
     <header class="py-5 section-glass-bg sticky top-0 z-50 border-b border-gray-700">
         <div class="container flex justify-between items-center">
-            <h1 class="text-3xl font-extrabold text-white tracking-wider">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-wider">
                 JM.<span class="text-color-accent">dev</span>
             </h1>
-            <nav class="space-x-8 hidden lg:flex">
+            <nav class="space-x-4 md:space-x-8 hidden lg:flex">
                 <a href="#about"
-                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200">About</a>
+                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200 text-sm md:text-base">About</a>
                 <a href="#expertise"
-                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200">Expertise</a>
+                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200 text-sm md:text-base">Expertise</a>
                 <a href="#projects"
-                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200">Portfolio</a>
+                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200 text-sm md:text-base">Portfolio</a>
                 <a href="#pricing"
-                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200">Pricing</a>
+                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200 text-sm md:text-base">Pricing</a>
                 <a href="#testimonials"
-                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200">Testimonials</a>
-                <a href="#contact" class="px-6 py-2 rounded-full text-white btn-primary font-semibold">
+                    class="text-gray-300 hover:text-color-accent font-medium transition duration-200 text-sm md:text-base">Testimonials</a>
+                <a href="#contact" class="px-4 py-2 md:px-6 md:py-2 rounded-full text-white btn-primary font-semibold text-sm md:text-base">
                     Engage Me
                 </a>
             </nav>
@@ -831,7 +782,7 @@
                     <li><a href="#projects">Portfolio</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact" class="btn-primary" id="mobile-cta">Engage Me</a></li>
+                    <li><a href="#contact" class="btn-primary text-center" id="mobile-cta">Engage Me</a></li>
                 </ul>
             </nav>
         </div>
@@ -839,16 +790,16 @@
 
     <main>
         <!-- Hero Section: High-Impact & Defined Role -->
-        <section id="about" class="py-24 md:py-40 text-center relative overflow-hidden section-glass-bg">
+        <section id="about" class="py-16 md:py-24 lg:py-40 text-center relative overflow-hidden section-glass-bg">
             <div class="container z-10 relative">
-                <p class="text-lg text-color-accent font-semibold mb-4 tracking-wider uppercase">
+                <p class="text-base md:text-lg text-color-accent font-semibold mb-4 tracking-wider uppercase">
                     Independent Digital Architect & Freelancer
                 </p>
-                <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-tight md:leading-snug">
+                <h2 class="hero-heading font-black tracking-tighter mb-6 leading-tight md:leading-snug">
                     I Engineer <span class="text-color-accent">Digital Growth.</span> Not Just Code.
                 </h2>
 
-                <p class="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto mb-12 font-light">
+                <p class="text-lg md:text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto mb-8 md:mb-12 font-light px-4">
                     I operate as a highly specialized independent contractor, delivering personalized, full-stack
                     solutions without the agency overhead. This streamlined process ensures you work directly with the
                     expert, guaranteeing clear communication, dedicated focus, and maximum accountability for your
@@ -856,7 +807,7 @@
                 </p>
 
                 <a href="https://jemaile-portfolio.netlify.app/" target="_blank"
-                    class="inline-flex items-center space-x-2 px-10 py-4 rounded-full text-lg text-white btn-primary font-bold transition">
+                    class="inline-flex items-center space-x-2 px-6 py-3 md:px-10 md:py-4 rounded-full text-base md:text-lg text-white btn-primary font-bold transition">
                     <span>View My Full Portfolio</span>
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -867,17 +818,17 @@
         </section>
 
         <!-- Expertise Section: Core Capabilities -->
-        <section id="expertise" class="py-20 md:py-28 border-t border-gray-700 section-glass-bg">
+        <section id="expertise" class="py-16 md:py-20 lg:py-28 border-t border-gray-700 section-glass-bg">
             <div class="container">
-                <div class="text-center mb-12 max-w-3xl mx-auto">
+                <div class="text-center mb-8 md:mb-12 max-w-3xl mx-auto px-4">
                     <p class="text-sm text-color-accent font-semibold mb-2 tracking-wider uppercase">Core Capabilities
                     </p>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">Expertise</h3>
-                    <p class="text-gray-400 mt-4">End-to-end product delivery with emphasis on performance, security,
+                    <h3 class="section-heading font-extrabold text-white">Expertise</h3>
+                    <p class="text-gray-400 mt-4 text-base md:text-lg">End-to-end product delivery with emphasis on performance, security,
                         and measurable outcomes. Below are areas I regularly lead and deliver.</p>
                 </div>
 
-                <div class="expertise-grid">
+                <div class="expertise-grid px-4">
                     <div class="skill-card card-interaction text-center">
                         <div class="skill-icon mx-auto text-color-accent">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -927,28 +878,27 @@
         </section>
 
         <!-- Pricing Section: New Content from Price_list.png -->
-        <section id="pricing" class="py-20 md:py-32 border-t border-gray-700 section-glass-bg">
+        <section id="pricing" class="py-16 md:py-20 lg:py-32 border-t border-gray-700 section-glass-bg">
             <div class="container">
-                <div class="text-center mb-16 max-w-3xl mx-auto">
+                <div class="text-center mb-8 md:mb-16 max-w-3xl mx-auto px-4">
                     <p class="text-sm text-color-accent font-semibold mb-2 tracking-wider uppercase">
                         Transparent Investment
                     </p>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">
+                    <h3 class="section-heading font-extrabold text-white">
                         Digital Services & Pricing Packages.
                     </h3>
                 </div>
 
                 <!-- Website Packages Grid -->
-                <h4 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-3">Website Packages</h4>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-
+                <h4 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-3 px-4">Website Packages</h4>
+                <div class="pricing-grid mb-8 md:mb-16 px-4">
                     <!-- Starter Package -->
-                    <div class="card-interaction p-8 rounded-2xl flex flex-col">
-                        <h5 class="text-3xl font-bold text-color-accent mb-2">Starter</h5>
-                        <p class="text-5xl font-extrabold text-white mb-4">R 499<span
-                                class="text-xl font-medium">.00</span></p>
-                        <p class="text-lg text-gray-400 mb-6">One-time Fee, Perfect for simple online presence.</p>
-                        <ul class="space-y-3 flex-grow text-gray-300">
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl flex flex-col">
+                        <h5 class="text-2xl md:text-3xl font-bold text-color-accent mb-2">Starter</h5>
+                        <p class="text-4xl md:text-5xl font-extrabold text-white mb-4">R 499<span
+                                class="text-lg md:text-xl font-medium">.00</span></p>
+                        <p class="text-base md:text-lg text-gray-400 mb-6">One-time Fee, Perfect for simple online presence.</p>
+                        <ul class="space-y-3 flex-grow text-gray-300 text-sm md:text-base">
                             <li class="flex items-center space-x-3"><span class="text-color-accent font-bold">✓</span>
                                 <span>1-page Package</span></li>
                             <li class="flex items-center space-x-3"><span class="text-color-accent font-bold">✓</span>
@@ -959,16 +909,17 @@
                                 <span>Basic SEO Setup</span></li>
                         </ul>
                         <button type="button" data-package="Starter"
-                            class="mt-8 btn-primary text-white text-center py-3 rounded-xl font-semibold package-select">Select
-                            Starter</button>
+                            class="mt-6 md:mt-8 btn-primary text-white text-center py-3 rounded-xl font-semibold package-select w-full">
+                            Select Starter
+                        </button>
                     </div>
 
                     <!-- Business Package -->
-                    <div class="card-interaction p-8 rounded-2xl flex flex-col border-2 border-color-accent/50">
-                        <h5 class="text-3xl font-bold text-color-accent mb-2">Business</h5>
-                        <p class="text-5xl font-extrabold text-white mb-4">R 3,499</p>
-                        <p class="text-lg text-gray-400 mb-6">One-time Fee, Best for growing businesses.</p>
-                        <ul class="space-y-3 flex-grow text-gray-300">
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl flex flex-col border-2 border-color-accent/50">
+                        <h5 class="text-2xl md:text-3xl font-bold text-color-accent mb-2">Business</h5>
+                        <p class="text-4xl md:text-5xl font-extrabold text-white mb-4">R 3,499</p>
+                        <p class="text-base md:text-lg text-gray-400 mb-6">One-time Fee, Best for growing businesses.</p>
+                        <ul class="space-y-3 flex-grow text-gray-300 text-sm md:text-base">
                             <li class="flex items-center space-x-3"><span class="text-color-accent font-bold">✓</span>
                                 <span>1-3 Page Website</span></li>
                             <li class="flex items-center space-x-3"><span class="text-color-accent font-bold">✓</span>
@@ -981,16 +932,17 @@
                                 <span>1 Round of Changes Included</span></li>
                         </ul>
                         <button type="button" data-package="Business"
-                            class="mt-8 btn-primary text-white text-center py-3 rounded-xl font-semibold package-select">Select
-                            Business</button>
+                            class="mt-6 md:mt-8 btn-primary text-white text-center py-3 rounded-xl font-semibold package-select w-full">
+                            Select Business
+                        </button>
                     </div>
 
                     <!-- Premium Package -->
-                    <div class="card-interaction p-8 rounded-2xl flex flex-col">
-                        <h5 class="text-3xl font-bold text-color-accent mb-2">Premium</h5>
-                        <p class="text-5xl font-extrabold text-white mb-4">R 6,499 - R 8,899</p>
-                        <p class="text-lg text-gray-400 mb-6">Full-scale project for maximum digital presence.</p>
-                        <ul class="space-y-3 flex-grow text-gray-300">
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl flex flex-col">
+                        <h5 class="text-2xl md:text-3xl font-bold text-color-accent mb-2">Premium</h5>
+                        <p class="text-4xl md:text-5xl font-extrabold text-white mb-4">R 6,499 - R 8,899</p>
+                        <p class="text-base md:text-lg text-gray-400 mb-6">Full-scale project for maximum digital presence.</p>
+                        <ul class="space-y-3 flex-grow text-gray-300 text-sm md:text-base">
                             <li class="flex items-center space-x-3"><span class="text-color-accent font-bold">✓</span>
                                 <span>5-7 Page Website & Full Branding</span></li>
                             <li class="flex items-center space-x-3"><span class="text-color-accent font-bold">✓</span>
@@ -1005,19 +957,19 @@
                                 <span>1 Month Maintenance</span></li>
                         </ul>
                         <button type="button" data-package="Premium"
-                            class="mt-8 btn-primary text-white text-center py-3 rounded-xl font-semibold package-select">Select
-                            Premium</button>
+                            class="mt-6 md:mt-8 btn-primary text-white text-center py-3 rounded-xl font-semibold package-select w-full">
+                            Select Premium
+                        </button>
                     </div>
                 </div>
 
                 <!-- Auxiliary Services Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-
+                <div class="services-grid px-4">
                     <!-- Branding Services -->
-                    <div class="card-interaction p-8 rounded-2xl">
-                        <h4 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Branding Services
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Branding Services
                         </h4>
-                        <ul class="space-y-3 text-lg">
+                        <ul class="space-y-3 text-base md:text-lg">
                             <li class="flex justify-between items-end border-b border-gray-800 pb-1"><span>Logo
                                     Only</span><span class="font-bold text-color-accent">R 899</span></li>
                             <li class="flex justify-between items-end border-b border-gray-800 pb-1"><span>Branding
@@ -1028,10 +980,10 @@
                     </div>
 
                     <!-- SEO, Cards & E-Vites -->
-                    <div class="card-interaction p-8 rounded-2xl">
-                        <h4 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">SEO & Digital
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">SEO & Digital
                             Assets</h4>
-                        <ul class="space-y-3 text-lg">
+                        <ul class="space-y-3 text-base md:text-lg">
                             <li class="flex justify-between items-end border-b border-gray-800 pb-1"><span>Basic SEO
                                     Setup</span><span class="font-bold text-color-accent">R 1,499</span></li>
                             <li class="flex justify-between items-end border-b border-gray-800 pb-1"><span>Monthly
@@ -1048,31 +1000,29 @@
             </div>
         </section>
 
-
         <!-- Projects Section: Link to Actual Portfolio URL -->
-        <section id="projects" class="py-20 md:py-32 border-t border-gray-700 section-glass-bg">
+        <section id="projects" class="py-16 md:py-20 lg:py-32 border-t border-gray-700 section-glass-bg">
             <div class="container">
-                <div class="text-center mb-16 max-w-3xl mx-auto">
+                <div class="text-center mb-8 md:mb-16 max-w-3xl mx-auto px-4">
                     <p class="text-sm text-color-accent font-semibold mb-2 tracking-wider uppercase">
                         Portfolio of Impact
                     </p>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">
+                    <h3 class="section-heading font-extrabold text-white">
                         Selected Deliverables & Signature Projects.
                     </h3>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-
+                <div class="grid grid-cols-1 gap-8 md:gap-10 px-4">
                     <!-- Portfolio Link Card (Primary CTA) -->
                     <div
-                        class="card-interaction p-8 rounded-2xl md:col-span-2 text-center border-2 border-color-accent/70">
-                        <h4 class="text-3xl font-bold text-white mb-2">My Live, Unfiltered Portfolio:</h4>
-                        <p class="text-gray-400 mb-6 text-xl">
+                        class="card-interaction p-6 md:p-8 rounded-2xl text-center border-2 border-color-accent/70">
+                        <h4 class="text-2xl md:text-3xl font-bold text-white mb-2">My Live, Unfiltered Portfolio:</h4>
+                        <p class="text-gray-400 mb-6 text-lg md:text-xl">
                             All the projects, case studies, and live demonstrations of my capability are available
                             directly at my dedicated portfolio site.
                         </p>
                         <a href="https://jemaile-portfolio.netlify.app/" target="_blank"
-                            class="inline-flex items-center space-x-3 px-8 py-3 rounded-full text-lg text-white btn-primary font-bold transition">
+                            class="inline-flex items-center space-x-3 px-6 py-3 md:px-8 md:py-3 rounded-full text-base md:text-lg text-white btn-primary font-bold transition w-full md:w-auto justify-center">
                             <span>Visit jemaile-portfolio.netlify.app</span>
                             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1082,8 +1032,8 @@
                     </div>
 
                     <!-- Case Study 1 (Simplified for quick read) -->
-                    <div class="card-interaction p-8 rounded-2xl">
-                        <h4 class="text-2xl font-bold text-white mb-2 hover:text-color-accent transition">E-Commerce
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2 hover:text-color-accent transition">E-Commerce
                             Bakery</h4>
                         <p class="text-gray-400 mb-4">A dedicated platform designed for streamlined customer order
                             processing, enhancing efficiency and user experience for a modern business.</p>
@@ -1096,8 +1046,8 @@
                     </div>
 
                     <!-- Case Study 2 (Simplified for quick read) -->
-                    <div class="card-interaction p-8 rounded-2xl">
-                        <h4 class="text-2xl font-bold text-white mb-2 hover:text-color-accent transition">Oracle Apex
+                    <div class="card-interaction p-6 md:p-8 rounded-2xl">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2 hover:text-color-accent transition">Oracle Apex
                             Warehouse mangement system</h4>
                         <p class="text-gray-400 mb-4">Built an Oracle APEX web application using the OT sample schema to
                             support enterprise
@@ -1114,61 +1064,22 @@
             </div>
         </section>
 
-        <!-- Case Studies Section (Renamed to Detailed Results) - Retained for structure -->
-        <!-- <section id="case-studies" class="py-20 md:py-32 border-t border-gray-700 section-glass-bg">
-            <div class="container max-w-5xl">
-                <div class="text-center mb-16 max-w-3xl mx-auto">
-                    <p class="text-sm text-color-accent font-semibold mb-2 tracking-wider uppercase">
-                        The Process & Metrics
-                    </p>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">
-                        How I Drive Quantitative Results.
-                    </h3>
-                </div> -->
-
-        <!-- Case Study 1 Block -->
-        <!-- <div class="card-interaction p-10 rounded-2xl mb-8">
-                    <h4 class="text-3xl font-bold text-white mb-4">Case Study: Enterprise Process Automation</h4>
-                    <p class="text-gray-300 mb-6">Challenge: Client relied on outdated, manual approval workflows resulting in a 4-week onboarding process for new users.</p>
-                    <p class="text-gray-300 mb-6">Solution: Developed a custom Angular front-end integrated with a serverless Python backend, implementing granular role-based access control and automated email pipelines.</p>
-                    <ul class="list-disc pl-5 space-y-2 text-lg text-white">
-                        <li>Result 1: Reduced the entire client onboarding cycle from 4 weeks to 2 hours.</li>
-                        <li>Result 2: Eliminated 99% of human error in critical data entry fields.</li>
-                        <li>Technology Focus: Angular, Python, AWS Lambda, DynamoDB.</li>
-                    </ul>
-                </div> -->
-
-        <!-- Case Study 2 Block -->
-        <!-- <div class="card-interaction p-10 rounded-2xl">
-                    <h4 class="text-3xl font-bold text-white mb-4">Case Study: Real-Time Bidding Dashboard (FinTech)</h4>
-                    <p class="text-gray-300 mb-6">Challenge: Traders needed a dashboard capable of displaying 100+ data updates per second with no discernible lag to capture fleeting market opportunities.</p>
-                    <p class="text-gray-300 mb-6">Solution: Utilized React with WebSockets (socket.io) and custom Canvas rendering for zero-DOM-overhead data visualization, ensuring sub-10ms latency.</p>
-                    <ul class="list-disc pl-5 space-y-2 text-lg text-white">
-                        <li>Result 1: Achieved a stable, sub-5ms data update latency under peak load.</li>
-                        <li>Result 2: Provided traders a critical competitive advantage by visualizing data 2 seconds faster than competing platforms.</li>
-                        <li>Technology Focus: React, WebSockets, D3.js, High-Frequency Data Pipelines.</li>
-                    </ul>
-                </div>
-            </div>
-        </section> -->
-
         <!-- Testimonials Section: Social Proof is Mandatory -->
-        <section id="testimonials" class="py-20 md:py-32 border-t border-gray-700 section-glass-bg">
+        <section id="testimonials" class="py-16 md:py-20 lg:py-32 border-t border-gray-700 section-glass-bg">
             <div class="container">
-                <div class="text-center mb-16 max-w-3xl mx-auto">
+                <div class="text-center mb-8 md:mb-16 max-w-3xl mx-auto px-4">
                     <p class="text-sm text-color-accent font-semibold mb-2 tracking-wider uppercase">
                         Unfiltered Client Feedback
                     </p>
-                    <h3 class="text-4xl md:text-5xl font-extrabold text-white">
+                    <h3 class="section-heading font-extrabold text-white">
                         Proof of Partnership.
                     </h3>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-4">
                     <!-- Testimonial 1 -->
                     <div class="card-interaction p-6 rounded-2xl">
-                        <p class="text-lg italic text-gray-200 mb-4">"Jemaile's ethics and technical vision are
+                        <p class="text-base md:text-lg italic text-gray-200 mb-4">"Jemaile's ethics and technical vision are
                             exceptional. As Programme and Technical Director, he drives our mission with integrity,
                             delivering innovative solutions that truly empower communities."</p>
                         <p class="font-bold text-white">- Chad P, <span class="text-color-accent">CEO,<a  href="https://thedccsa.org/" target="_blank"> DCCSA</a></span></p>
@@ -1176,29 +1087,23 @@
 
                     <!-- Testimonial 2 -->
                     <div class="card-interaction p-6 rounded-2xl">
-                        <p class="text-lg italic text-gray-200 mb-4">"Direct communication, zero fluff. We got a higher
+                        <p class="text-base md:text-lg italic text-gray-200 mb-4">"Direct communication, zero fluff. We got a higher
                             quality product faster and cheaper than any agency quote. Highly recommended."</p>
                         <p class="font-bold text-white">- Tia O., <span class="text-color-accent">Owner, <a
                                     href="https://www.tastesbyt.co.za" target="_blank">tastesbyT</a></span></p>
                     </div>
-
-                    <!-- Testimonial 3 -->
-                    <!-- <div class="card-interaction p-6 rounded-2xl">
-                        <p class="text-lg italic text-gray-200 mb-4">"The commitment to performance optimization was insane. We saw an immediate 35% improvement in Core Web Vitals on launch day."</p>
-                        <p class="font-bold text-white">- Mark V., <span class="text-color-accent">Founder, HealthTech</span></p>
-                    </div> -->
                 </div>
             </div>
         </section>
 
         <!-- Final Call to Action / Contact (Form) -->
-        <section id="contact" class="py-20 md:py-32 border-t border-gray-700 section-glass-bg">
-            <div class="container max-w-4xl mx-auto card-interaction p-8 md:p-12 rounded-3xl"
+        <section id="contact" class="py-16 md:py-20 lg:py-32 border-t border-gray-700 section-glass-bg">
+            <div class="container max-w-4xl mx-auto card-interaction p-6 md:p-8 lg:p-12 rounded-3xl"
                 aria-labelledby="contact-heading">
                 <div class="text-center mb-6">
-                    <h3 id="contact-heading" class="text-4xl md:text-5xl font-extrabold text-white mb-2">Ready to Scale
+                    <h3 id="contact-heading" class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-2">Ready to Scale
                         Your Vision?</h3>
-                    <p class="text-xl text-gray-400">Choose a package or describe your brief below — I'll respond within
+                    <p class="text-lg md:text-xl text-gray-400">Choose a package or describe your brief below — I'll respond within
                         48 hours.</p>
                 </div>
 
@@ -1240,12 +1145,12 @@
                             placeholder="Summarize your goals, timeline, and budget (optional)"></textarea>
                     </label>
 
-                    <div class="flex items-center gap-4">
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
                         <button type="submit" id="contact-submit"
-                            class="btn-primary px-6 py-3 rounded-full text-white font-bold">Send inquiry</button>
+                            class="btn-primary px-6 py-3 rounded-full text-white font-bold w-full sm:w-auto">Send inquiry</button>
                         <button type="button" id="contact-clear"
-                            class="px-4 py-2 rounded-lg border border-gray-700 text-gray-300">Clear</button>
-                        <div id="contact-status" class="text-sm text-gray-300 ml-2" aria-live="polite"></div>
+                            class="px-4 py-2 rounded-lg border border-gray-700 text-gray-300 w-full sm:w-auto">Clear</button>
+                        <div id="contact-status" class="text-sm text-gray-300 sm:ml-2 text-center sm:text-left w-full sm:w-auto" aria-live="polite"></div>
                     </div>
                 </form>
             </div>
@@ -1256,7 +1161,7 @@
     <footer class="site-footer py-12 border-t border-gray-800 section-glass-bg" role="contentinfo"
         aria-label="Site footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-grid px-4">
                 <div>
                     <div class="footer-logo">JM.<span style="color:var(--color-accent)">dev</span></div>
                     <p class="mt-3 text-gray-300">Strategic Digital Architecture — Independent Contractor focused on
@@ -1308,7 +1213,7 @@
                 </div>
             </div>
 
-            <div class="footer-legal mt-6 flex items-center justify-between flex-wrap">
+            <div class="footer-legal mt-6 flex flex-col md:flex-row items-center justify-between gap-4 px-4">
                 <p>&copy; 2025 JM.dev — All rights reserved.</p>
                 <div class="flex items-center gap-4">
                     <a href="privacy.html" class="text-sm">Privacy</a>
@@ -1319,6 +1224,7 @@
         </div>
     </footer>
 
+    <!-- The rest of your JavaScript remains the same -->
     <script>
         // Smooth scrolling for navigation links, ensuring the best user experience.
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1499,16 +1405,6 @@
 
                 acceptBtn && acceptBtn.addEventListener('click', () => setCookieConsent(true));
                 declineBtn && declineBtn.addEventListener('click', () => setCookieConsent(false));
-                
-                /* Wire up learn-more button (replaces inline onclick) */
-                const learnMoreBtn = document.getElementById('learn-more-btn');
-                learnMoreBtn && learnMoreBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openPrivacyModal();
-                });
-                
-                policyBtn && policyBtn.addEventListener('click', (e) => { e.preventDefault(); openPrivacyModal(); });
-
                 // Modal open/close helpers (privacy)
                 let __jm_last_focused = null;
                 function openPrivacyModal() {
@@ -1520,19 +1416,11 @@
                     overlay.setAttribute('aria-hidden', 'false');
                     document.body.classList.add('no-scroll');
                     fetch('privacy.html').then(r => r.text()).then(html => {
-                        /* Sanitize HTML: create a temp element to extract text/safe content */
-                        const temp = document.createElement('div');
-                        temp.innerHTML = html;
-                        /* Extract only the body content safely */
-                        const body = temp.querySelector('body') || temp;
-                        content.innerHTML = '';
-                        while (body.firstChild) {
-                            content.appendChild(body.firstChild);
-                        }
+                        content.innerHTML = html;
                         const closeBtn = document.getElementById('modal-close');
                         closeBtn && closeBtn.focus();
                     }).catch(() => {
-                        content.textContent = 'Unable to load policy. Please visit the privacy page directly.';
+                        content.innerHTML = '<p>Unable to load policy. Please visit the privacy page directly.</p>';
                         document.getElementById('modal-close')?.focus();
                     });
                 }
@@ -1581,7 +1469,7 @@
         <div class="cookie-container">
             <div class="cookie-content">
                 <h3>We value your privacy</h3>
-                <p>We use cookies to enhance your browsing experience. By continuing, you consent to our use of cookies. <button id="learn-more-btn" class="learn-more-link">Learn more</button>.</p>
+                <p>We use cookies to enhance your browsing experience. By continuing, you consent to our use of cookies. <a href="#" onclick="document.getElementById('cookie-policy-btn').click(); return false;">Learn more</a>.</p>
             </div>
             <div class="cookie-actions">
                 <button id="cookie-decline" class="cookie-btn cookie-btn-decline">Decline</button>
@@ -1594,10 +1482,10 @@
     <div id="modal-overlay" class="modal-overlay hidden" aria-hidden="true">
         <div class="modal" role="dialog" aria-modal="true" aria-label="Privacy Policy">
             <div class="modal-header">
-                <h2 class="modal-title">Privacy Policy</h2>
+                <h2 style="margin:0">Privacy Policy</h2>
                 <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
             </div>
-            <div id="modal-content" class="modal-content-area"></div>
+            <div id="modal-content" style="margin-top:1rem"></div>
         </div>
     </div>
 </body>
