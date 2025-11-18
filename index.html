@@ -41,6 +41,11 @@
         /* --- GLOBAL STYLES & FONT --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+        /* Basic box model & responsive helpers */
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        img, picture, video, svg { max-width: 100%; height: auto; display: block; }
+
         :root {
             --color-bg: #0f172a;
             /* Slate 900 - Deep Night */
@@ -51,11 +56,11 @@
         }
 
         body {
-            /* SET FIXED BACKGROUND IMAGE */
+            /* BACKGROUND */
             background-image: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQo5DTrrwD4tBSwEl2i-Vat8gGVW17ihzo7CVrPGDc5skdeGObw');
             background-size: cover;
-            background-attachment: fixed;
-            /* Crucial for fixed background */
+            /* Use scroll by default for mobile/touch devices (fixed can be problematic on mobile) */
+            background-attachment: scroll;
             background-position: center center;
 
             font-family: 'Inter', sans-serif;
@@ -63,7 +68,6 @@
             scroll-behavior: smooth;
             color: var(--color-text);
             background-color: #0f172a;
-            /* Fallback/Blend color */
 
             /* Mobile-safe area & touch optimizations */
             padding-top: env(safe-area-inset-top);
@@ -71,6 +75,11 @@
             -webkit-tap-highlight-color: rgba(0,0,0,0);
             touch-action: manipulation;
             -webkit-touch-callout: none;
+        }
+
+        /* Enable fixed background only on non-touch / pointer-fine devices to avoid mobile performance issues */
+        @media (pointer: fine) and (hover: hover) {
+            body { background-attachment: fixed; }
         }
 
         .container {
