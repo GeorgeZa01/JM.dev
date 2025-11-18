@@ -626,6 +626,25 @@
         .modal-close { background:transparent; border:none; color:var(--color-text); font-weight:700; padding:0.5rem; border-radius:8px; }
         .modal-close:focus { outline:3px solid rgba(59,130,246,0.18); }
 
+        .modal-title { margin: 0; }
+        .modal-content-area { margin-top: 1rem; }
+
+        /* Learn more link button (accessible alternative to onclick) */
+        .learn-more-link {
+            background: transparent;
+            border: none;
+            color: var(--color-accent);
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0;
+        }
+
+        .learn-more-link:hover,
+        .learn-more-link:focus-visible {
+            opacity: 0.8;
+        }
+
         /* Mobile / touch target improvements */
         header {
             /* ensure header doesn't sit under notches */
@@ -1395,6 +1414,16 @@
 
                 acceptBtn && acceptBtn.addEventListener('click', () => setCookieConsent(true));
                 declineBtn && declineBtn.addEventListener('click', () => setCookieConsent(false));
+                
+                /* Wire up learn-more button (replaces inline onclick) */
+                const learnMoreBtn = document.getElementById('learn-more-btn');
+                learnMoreBtn && learnMoreBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openPrivacyModal();
+                });
+                
+                policyBtn && policyBtn.addEventListener('click', (e) => { e.preventDefault(); openPrivacyModal(); });
+
                 // Modal open/close helpers (privacy)
                 let __jm_last_focused = null;
                 function openPrivacyModal() {
@@ -1406,11 +1435,19 @@
                     overlay.setAttribute('aria-hidden', 'false');
                     document.body.classList.add('no-scroll');
                     fetch('privacy.html').then(r => r.text()).then(html => {
-                        content.innerHTML = html;
+                        /* Sanitize HTML: create a temp element to extract text/safe content */
+                        const temp = document.createElement('div');
+                        temp.innerHTML = html;
+                        /* Extract only the body content safely */
+                        const body = temp.querySelector('body') || temp;
+                        content.innerHTML = '';
+                        while (body.firstChild) {
+                            content.appendChild(body.firstChild);
+                        }
                         const closeBtn = document.getElementById('modal-close');
                         closeBtn && closeBtn.focus();
                     }).catch(() => {
-                        content.innerHTML = '<p>Unable to load policy. Please visit the privacy page directly.</p>';
+                        content.textContent = 'Unable to load policy. Please visit the privacy page directly.';
                         document.getElementById('modal-close')?.focus();
                     });
                 }
@@ -1459,7 +1496,7 @@
         <div class="cookie-container">
             <div class="cookie-content">
                 <h3>We value your privacy</h3>
-                <p>We use cookies to enhance your browsing experience. By continuing, you consent to our use of cookies. <a href="#" onclick="document.getElementById('cookie-policy-btn').click(); return false;">Learn more</a>.</p>
+                <p>We use cookies to enhance your browsing experience. By continuing, you consent to our use of cookies. <button id="learn-more-btn" class="learn-more-link">Learn more</button>.</p>
             </div>
             <div class="cookie-actions">
                 <button id="cookie-decline" class="cookie-btn cookie-btn-decline">Decline</button>
@@ -1472,10 +1509,10 @@
     <div id="modal-overlay" class="modal-overlay hidden" aria-hidden="true">
         <div class="modal" role="dialog" aria-modal="true" aria-label="Privacy Policy">
             <div class="modal-header">
-                <h2 style="margin:0">Privacy Policy</h2>
+                <h2 class="modal-title">Privacy Policy</h2>
                 <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
             </div>
-            <div id="modal-content" style="margin-top:1rem"></div>
+            <div id="modal-content" class="modal-content-area"></div>
         </div>
     </div>
 </body>
