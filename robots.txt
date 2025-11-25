@@ -1,12 +1,7 @@
 User-agent: *
 Allow: /
-Sitemap: https://jmdev-pi.vercel.app/sitemap.xml
-# Crawl-delay: 10  # optional, uncomment if you want slower crawl rate
-# Disallow: /admin/
-User-agent: *
-Allow: /
 
 # Block indexing of any staging or admin paths (uncomment and edit if needed)
 # Disallow: /admin/
 
-Sitemap: https://jm.dev/sitemap.xml
+Sitemap: https://jmdev.co.za/sitemap.xml
