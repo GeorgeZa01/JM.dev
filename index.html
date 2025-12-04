@@ -2902,7 +2902,7 @@
 
             <!-- Call to Action Buttons -->
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                <a href="https://nutri-ai-za.base44.app" target="_blank" rel="noopener noreferrer" 
+                <a href="https://jmdev.co.za" target="_blank" rel="noopener noreferrer" 
                    class="cai-btn-primary">
                     Download & Start Free
                 </a>
@@ -2922,21 +2922,13 @@
         const caiModal = document.getElementById('calorieAI-modal-overlay');
         const caiCloseBtn = document.getElementById('cai-close-modal');
         const caiLaterBtn = document.getElementById('cai-maybe-later');
-        const caiStorageKey = 'CalorieAI_Promo_Shown';
-
-        function hasUserSeenCaiModal() {
-            return sessionStorage.getItem(caiStorageKey) === 'true';
-        }
-
-        function markCaiModalAsSeen() {
-            sessionStorage.setItem(caiStorageKey, 'true');
-        }
-
+        
+        // Removed storage keys so it shows every time
+        
         function showCaiModal() {
             if(caiModal) {
                 caiModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                markCaiModalAsSeen();
             }
         }
 
@@ -2956,11 +2948,9 @@
             });
         }
 
-        // Show automatically after 1.5 seconds if not seen yet
+        // Show automatically after 1.5 seconds on every page load
         window.addEventListener('load', () => {
-            if (!hasUserSeenCaiModal()) {
-                setTimeout(showCaiModal, 1500); 
-            }
+            setTimeout(showCaiModal, 1500); 
         });
     </script>
     <!-- --- CALORIE AI PROMO LOGIC END --- -->
