@@ -4,11 +4,11 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#expertise", label: "Expertise" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#testimonials", label: "Testimonials" },
+  { href: "/#about", label: "About" },
+  { href: "/#expertise", label: "Expertise" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#portfolio", label: "Portfolio" },
+  // { href: "/shop", label: "Shop" },
 ];
 
 export function Header() {
@@ -36,7 +36,7 @@ export function Header() {
       <div className="container mx-auto px-6">
           <nav aria-label="Primary navigation" className="flex items-center justify-between h-20">
           {/* Logo */}
-            <a href="#" aria-label="Home" className="flex items-center gap-1">
+            <a href="/" aria-label="Home" className="flex items-center gap-1">
             <span className="text-2xl font-display font-bold text-foreground">
               JM
             </span>
@@ -65,7 +65,7 @@ export function Header() {
               asChild
               className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              <a href="#contact">Contact Me</a>
+              <a href="/#contact">Contact Me</a>
             </Button>
           </div>
 
@@ -103,7 +103,7 @@ export function Header() {
                 asChild
                 className="btn-glow bg-primary text-primary-foreground hover:bg-primary/90 mt-4"
               >
-                <a href="#contact">Contact Me</a>
+                <a href="/#contact">Contact Me</a>
               </Button>
             </div>
           </motion.div>
